@@ -6,8 +6,8 @@ authors = [
     { name = "Diwash Bhandari", email = "diwash.bhandari@codavatar.tech" }
 ]
 dependencies = [
-    "pytest>=8.1.1",
-    "hypothesis>=6.100.1",
+    "fastapi>=0.110.1",
+    "uvicorn>=0.29.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -18,7 +18,12 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    "pytest-cov>=5.0.0",
+    "pytest>=8.1.1",
+    "hypothesis>=6.100.1",
+    "schemathesis>=3.26.2",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
@@ -27,9 +32,16 @@ allow-direct-references = true
 packages = ["src/pytest_python"]
 
 [tool.rye.scripts]
+dev={cmd="uvicorn src.main:app --reload"}
+
+# run all tests
 test={cmd="pytest --log-cli-level=DEBUG "}
 test_v={cmd="pytest -v"}
 test_k={cmd="pytest -k"}
-test_s={cmd="pytest -s -v "}
+test_s={cmd="pytest -s -v"}
+test_x={cmd="pytest -x -v"}
 # display test and data generation statistics.
 test_hypothesis={cmd="pytest -s -v --hypothesis-show-statistics"}
+
+test_schemathesis={cmd="st run http://localhost:8000/openapi.json --experimental=openapi-3.1"}
+test_schemathesis_report={cmd="st run http://localhost:8000/openapi.json --checks all --report"}

@@ -58,4 +58,5 @@ def test_clear_cart(cart):
     cart.add_item(soda, 2.00)
     cart.add_item(water, 1.00)
     cart.clear_cart()
+    print("hello ...")
     assert cart.items == {}
