@@ -38,3 +38,7 @@ The advantages of Pytest are as follows −
 [**11. Run Tests in Parallel**](pytest_readme/10._run_tests_in_parallel.md)
 
 [**12. Test Execution Results in XML Format**](pytest_readme/11._test_execution_results_in_xml_format.md)
+
+## References
+
+- [Pytest Documentation](https://docs.pytest.org/en/latest/getting-started.html#get-started)

@@ -25,3 +25,11 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pytest_python"]
+
+[tool.rye.scripts]
+test={cmd="pytest --log-cli-level=DEBUG "}
+test_v={cmd="pytest -v"}
+test_k={cmd="pytest -k"}
+test_s={cmd="pytest -s -v "}
+# display test and data generation statistics.
+test_hypothesis={cmd="pytest -s -v --hypothesis-show-statistics"}

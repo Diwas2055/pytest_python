@@ -1,25 +1,29 @@
 from typing import Callable
 from hypothesis import given, strategies as st
 from hypothesis.strategies import SearchStrategy
+
 from src.shopping_cart import ShoppingCart, Item
 
 
 # Create a strategy for items
 @st.composite
 def items_strategy(draw: Callable[[SearchStrategy[Item]], Item]):
-    return draw(st.sampled_from(list(Item)))
+    value = draw(st.sampled_from(list(Item)))
+    return value
 
 
 # Create a strategy for price
 @st.composite
 def price_strategy(draw: Callable[[SearchStrategy[float]], float]):
-    return round(draw(st.floats(min_value=0.01, max_value=100, allow_nan=False)), 2)
+    value = round(draw(st.floats(min_value=0.01, max_value=100, allow_nan=False)), 2)
+    return value
 
 
 # Create a strategy for quantity
 @st.composite
 def qty_strategy(draw: Callable[[SearchStrategy[int]], int]):
-    return draw(st.integers(min_value=1, max_value=10))
+    value = draw(st.integers(min_value=1, max_value=10))
+    return value
 
 
 # ? Property Based Unit Testing

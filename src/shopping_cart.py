@@ -1,4 +1,3 @@
-import random
 from enum import Enum, auto
 
 
@@ -21,6 +20,16 @@ class Item(Enum):
 
 
 class ShoppingCart:
+    """
+    Simple Shopping App that lets us
+
+        - Add items to the cart
+        - Remove items from the cart
+        - Calculate the total based on the quantity
+        - View cart items
+        - Clear cart
+    """
+
     def __init__(self):
         """
         Creates a shopping cart object with an empty dictionary of items
