@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "fastapi>=0.110.1",
     "uvicorn>=0.29.0",
+    "pytest-mock>=3.14.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -40,8 +41,13 @@ test_v={cmd="pytest -v"}
 test_k={cmd="pytest -k"}
 test_s={cmd="pytest -s -v"}
 test_x={cmd="pytest -x -v"}
+
 # display test and data generation statistics.
 test_hypothesis={cmd="pytest -s -v --hypothesis-show-statistics"}
 
 test_schemathesis={cmd="st run http://localhost:8000/openapi.json --experimental=openapi-3.1"}
 test_schemathesis_report={cmd="st run http://localhost:8000/openapi.json --checks all --report"}
+
+
+# mocking tests
+# test_mock={cmd="pytest -k mocking -v --log-cli-level=DEBUG"}

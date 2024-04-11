@@ -82,9 +82,12 @@ pyrate-limiter==3.6.0
     # via schemathesis
 pytest==8.1.1
     # via pytest-cov
+    # via pytest-mock
     # via pytest-subtests
     # via schemathesis
 pytest-cov==5.0.0
+pytest-mock==3.14.0
+    # via pytest-python
 pytest-subtests==0.7.0
     # via schemathesis
 pyyaml==6.0.1
