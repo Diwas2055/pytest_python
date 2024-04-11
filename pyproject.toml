@@ -8,7 +8,6 @@ authors = [
 dependencies = [
     "fastapi>=0.110.1",
     "uvicorn>=0.29.0",
-    "pytest-mock>=3.14.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -24,6 +23,7 @@ dev-dependencies = [
     "pytest>=8.1.1",
     "hypothesis>=6.100.1",
     "schemathesis>=3.26.2",
+    "pytest-mock>=3.14.0",
 ]
 
 [tool.hatch.metadata]
