@@ -1,0 +1,29 @@
+name: Schemathesis Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Start containers
+      run: docker compose up -d --build
+
+    - uses: schemathesis/action@v1
+      with:
+        # Your API schema location
+        schema: 'http://localhost:8000/openapi.json'
+        # Set your token from secrets
+        token: ${{ secrets.SCHEMATHESIS_TOKEN }}
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose down

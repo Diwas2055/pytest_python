@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      # Defines how to build the Docker image for the service
+      context: . # Use the current directory as the build context
+      dockerfile: Dockerfile # Use the specified Dockerfile for building
+    ports:
+      - "8000:8000" # Map port 8000 on the host to port 8000 in the container
+    environment:
+      # Define environment variables for the container
+      - ENVIRONMENT=production # Set the environment variable ENVIRONMENT to "production"
+    # Add any other environment variables or configurations here
+    # For example, you might want to add volumes, networks, or healthcheck configurations
+
+    # Optionally, you can define restart policies and other settings for the service
+    restart: always # Restart the container automatically if it stops for any reason
+    # Other settings like volumes, networks, healthcheck, etc., can be added as needed
