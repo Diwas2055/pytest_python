@@ -1,4 +1,4 @@
-# Use Hypothesis,Schemathesis and Pytest for Robust Property-Based Testing in Python
+# Use Hypothesis,Schemathesis,Mock,MonkeyPatching and Pytest for Robust Property-Based Testing in Python
 
 ## Introducton
 
