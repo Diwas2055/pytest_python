@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "fastapi>=0.110.1",
     "uvicorn>=0.29.0",
+    "pytest-asyncio>=0.23.6",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -24,6 +25,7 @@ dev-dependencies = [
     "hypothesis>=6.100.1",
     "schemathesis>=3.26.2",
     "pytest-mock>=3.14.0",
+    "pytest-asyncio>=0.23.6",
 ]
 
 [tool.hatch.metadata]
@@ -52,3 +54,25 @@ test_schemathesis_report={cmd="st run http://localhost:8000/openapi.json --check
 
 # mocking tests
 # test_mock={cmd="pytest -k mocking -v --log-cli-level=DEBUG"}
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+filterwarnings =" ignore::DeprecationWarning"
+addopts = '''
+  --strict-markers
+  --tb=short
+  --cov=src
+  --cov=tests
+  --cov-branch
+  --cov-report=term-missing
+  --cov-report=html
+  --cov-report=xml
+  --no-cov-on-fail
+  --cov-fail-under=100
+  --asyncio-mode=auto
+'''
+env = [
+  "SECRET_KEY=secret",
+  "MAX_CONNECTIONS_COUNT=1",
+  "MIN_CONNECTIONS_COUNT=1"
+]
