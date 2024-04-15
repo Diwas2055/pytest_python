@@ -26,6 +26,7 @@ dev-dependencies = [
     "schemathesis>=3.26.2",
     "pytest-mock>=3.14.0",
     "pytest-asyncio>=0.23.6",
+    "pytest-xdist>=3.5.0",
 ]
 
 [tool.hatch.metadata]
@@ -57,11 +58,11 @@ test_schemathesis_report={cmd="st run http://localhost:8000/openapi.json --check
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-filterwarnings =" ignore::DeprecationWarning"
+filterwarnings ="ignore::DeprecationWarning"
 addopts = '''
   --strict-markers
   --tb=short
-  --cov=src
+  --cov=app
   --cov=tests
   --cov-branch
   --cov-report=term-missing
@@ -69,6 +70,7 @@ addopts = '''
   --cov-report=xml
   --no-cov-on-fail
   --cov-fail-under=100
+  --numprocesses=auto
   --asyncio-mode=auto
 '''
 env = [
