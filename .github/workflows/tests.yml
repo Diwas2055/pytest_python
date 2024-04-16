@@ -9,9 +9,9 @@ on:
       - "*"
 
 jobs:
-  lint:
-    name: Run tests
+  pytest:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         python-version: ['3.9', '3.10', '3.11', '3.12']
@@ -27,8 +27,8 @@ jobs:
 
       - name: Set Rye Config
         run: |
-          rye config --set-bool behavior.global-python true
-          rye config --set-bool behavior.use-uv true
+          rye config --set-bool behavior.global-python=true
+          rye config --set-bool behavior.use-uv=true
 
       - name: Set up Python ${{ matrix.python-version }}
         run: |
@@ -39,7 +39,5 @@ jobs:
       - name: Run Pytest if directory exists
         run: |
           if [ -d "./tests/" ]; then
-            rye run pytest
-          else
-            echo "No tests directory found."
+            rye run pytest -s
           fi
