@@ -10,14 +10,14 @@ on:
       - "*"
 
 jobs:
-  lint:
+  pytest:
     name: Run tests
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: [3.11]
+        python-version: ['3.9', '3.10', '3.11', '3.12']
 
     # services:
     #   postgres:
@@ -31,42 +31,27 @@ jobs:
     #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4.2.0
+      - name: Install Rye
+        uses: eifinger/setup-rye@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          enable-cache: true
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: "1.1.12"
-          virtualenvs-in-project: true
-
-      - name: Set up cache
-        uses: actions/cache@v3
-        id: cache
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-py-${{ matrix.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
-
-      - name: Ensure cache is healthy
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: poetry run pip --version >/dev/null 2>&1 || rm -rf .venv
-
-      - name: Install dependencies
-        run: poetry install --no-interaction
-
-      - name: Run tests
-        # env:
-        #   SECRET_KEY: secret_key
-        #   DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
-        # run: |
-        #   poetry run alembic upgrade head
-        #   poetry run ./scripts/test
+       - name: Set Rye Config
         run: |
-          poetry run pytest
+          rye config --set-bool behavior.global-python=true
+          rye config --set-bool behavior.use-uv=true
 
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v3.1.0
+      - name: Set up Python ${{ matrix.python-version }}
+        run: |
+          export PYTHONUNBUFFERED=1
+          rye pin ${{ matrix.python-version }}
+          rye sync
+
+      - name: Run Pytest if directory exists
+        run: |
+          if [ -d "./tests/" ]; then
+            rye run pytest
+          fi
