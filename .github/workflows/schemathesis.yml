@@ -3,10 +3,10 @@ name: Schemathesis Test Suite
 on:
   push:
     branches:
-      - master
+      - masterv2
   pull_request:
     branches:
-      - master
+      - masterv2
 
 jobs:
   test:

@@ -3,7 +3,7 @@ name: Tests on Rye
 on:
   push:
     branches:
-      - "master"
+      - "masterv2"
   pull_request:
     branches:
       - "*"
