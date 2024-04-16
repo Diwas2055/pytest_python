@@ -60,8 +60,9 @@ test_schemathesis_report={cmd="st run http://localhost:8000/openapi.json --check
 testpaths = "tests"
 filterwarnings ="ignore::DeprecationWarning"
 addopts = '''
-  --strict-markers
+  --verbose
   --tb=short
+  --strict-markers
   --cov=app
   --cov=tests
   --cov-branch
@@ -72,4 +73,6 @@ addopts = '''
   --cov-fail-under=100
   --numprocesses=auto
   --asyncio-mode=auto
+  --log-cli-level=DEBUG
+  --disable-warnings
 '''
