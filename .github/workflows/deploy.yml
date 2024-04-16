@@ -6,9 +6,9 @@ on:
       - master
 
 env:
-  IMAGE_NAME: ${{ secrets.DOCKER_USER }}/realworld-example-app
-  DOCKER_USER: ${{ secrets.DOCKER_USER }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/realworld-example-app
+  DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
 
 jobs:
   build:
