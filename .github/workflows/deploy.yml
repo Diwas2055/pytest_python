@@ -3,7 +3,7 @@ name: Deploy on Docker Hub
 on:
   push:
     branches:
-      - deploy
+      - master
 
 env:
   IMAGE_NAME: shree0105/realworld-example-app
