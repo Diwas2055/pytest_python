@@ -20,7 +20,7 @@ jobs:
     - uses: schemathesis/action@v1
       with:
         # Your API schema location
-        schema: 'http://localhost:8000/openapi.json'
+        schema: ${{ secrets.API_SCHEMA_URL }}
         # Set your token from secrets
         token: ${{ secrets.SCHEMATHESIS_TOKEN }}
 
