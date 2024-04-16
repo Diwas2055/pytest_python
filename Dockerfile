@@ -42,4 +42,4 @@ COPY --from=base /usr/local/bin /usr/local/bin
 EXPOSE 8001
 
 # Command to run the FastAPI application in production
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "800", "--workers", "2", "--proxy-headers"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "2", "--proxy-headers"]
