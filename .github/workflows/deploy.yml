@@ -30,7 +30,7 @@ name: Deploy on Docker Hub
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/realworld-example-app
