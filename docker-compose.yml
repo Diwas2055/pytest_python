@@ -22,3 +22,18 @@ services:
         "2",
         "--proxy-headers"
       ]
+
+  dokemon:
+    image: productiveops/dokemon:latest
+    container_name: dokemon_container
+    restart: unless-stopped
+    # labels:
+    #   - 'traefik.enable=true'
+    #   - 'traefik.http.routers.dokemon.rule=Host(`dokemon.example.com`)'
+    #   - 'traefik.http.routers.dokemon.entrypoints=websecure'
+    #   - 'traefik.http.routers.dokemon.tls.certresolver=dokemon'
+    ports:
+      - 9090:9090
+    volumes:
+      - ./dokemondata:/data
+      - /var/run/docker.sock:/var/run/docker.sock
