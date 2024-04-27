@@ -1,0 +1,26 @@
+name: Deploy on Docker Hub
+
+on:
+  push:
+    branches:
+      - test_deploy
+
+env:
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/realworld-example-app
+  DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+
+jobs:
+  build:
+    name: Build Container
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build image and publish to registry
+        run: |
+          docker build -t $IMAGE_NAME:latest .
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+          docker push $IMAGE_NAME:latest
