@@ -31,7 +31,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY /src/ .
 
 # Stage 2: Production Stage
-FROM python3.11-slim-slim as production
+FROM python3.11-slim as production
 
 # Set working directory
 WORKDIR /app
