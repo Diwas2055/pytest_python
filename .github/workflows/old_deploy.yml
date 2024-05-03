@@ -79,8 +79,3 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ env.IMAGE_NAME }}
 
-      - name: Build image and publish to registry
-        run: |
-          docker build -t $IMAGE_NAME:latest .
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
-          docker push $IMAGE_NAME:latest
