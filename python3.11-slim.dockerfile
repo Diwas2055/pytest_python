@@ -1,5 +1,5 @@
 # Stage 1: Build Stage
-FROM python:3.11 as base
+FROM python:3.11-slim as build
 
 
 # Set the maintainer label
@@ -31,15 +31,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY /src/ .
 
 # Stage 2: Production Stage
-FROM python:3.11 as production
+FROM python:3.11-slim as production
 
 # Set working directory
 WORKDIR /app
 
 # Copy only necessary files from the builder stage
-COPY --from=base /app /app
-COPY --from=base /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
-COPY --from=base /usr/local/bin /usr/local/bin
+COPY --from=build /app /app
+COPY --from=build /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=build /usr/local/bin /usr/local/bin
 
 
 # Expose the port for FastAPI
