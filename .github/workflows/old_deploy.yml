@@ -30,7 +30,7 @@ jobs:
     #         python_version: "3.8"
     #       - name: python3.7
     #         python_version: "3.7"
-    #       - name: python3.11-slim
+    #       - name: python:3.11-alpine
     #         python_version: "3.11"
     #       - name: python3.10-slim
     #         python_version: "3.10"
@@ -47,7 +47,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set Dockerfile name for latest
-        run: echo "DOCKERFILE_NAME=python3.11-slim" >> $GITHUB_ENV
+        run: echo "DOCKERFILE_NAME=python:3.11-alpine" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -67,8 +67,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ env.IMAGE_NAME }}:python3.11-slim
-            ${{ env.IMAGE_NAME }}:python3.11-slim-${{ env.DATE_TAG }}
+            ${{ env.IMAGE_NAME }}:python:3.11-alpine
+            ${{ env.IMAGE_NAME }}:python:3.11-alpine-${{ env.DATE_TAG }}
           context: ./
           file: ./${{ env.DOCKERFILE_NAME }}.dockerfile
 

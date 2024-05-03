@@ -1,5 +1,5 @@
 # Stage 1: Build Stage
-FROM python3.11-slim as base
+FROM python:3.11-alpine as base
 
 
 # Set the maintainer label
@@ -31,7 +31,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY /src/ .
 
 # Stage 2: Production Stage
-FROM python3.11-slim as production
+FROM python:3.11-alpine as production
 
 # Set working directory
 WORKDIR /app
