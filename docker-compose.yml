@@ -35,5 +35,5 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./dokemondata:/data
+      - ./.dokemondata:/data
       - /var/run/docker.sock:/var/run/docker.sock
