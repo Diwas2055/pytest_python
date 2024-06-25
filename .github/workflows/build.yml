@@ -101,8 +101,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Inspect Docker image
-        run: docker image inspect ${{ env.IMAGE_NAME }}
+      # - name: Inspect Docker image
+      #   run: docker image inspect ${{ env.IMAGE_NAME }}
 
   scan_image:
     name: Scan Docker Image for Vulnerabilities
